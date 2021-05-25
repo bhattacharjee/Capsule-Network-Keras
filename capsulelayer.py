@@ -24,14 +24,15 @@ def margin_loss(y_true, y_pred):
     :param y_pred: [None, num_capsule]
     :return: a scalar loss value.
     """
-    #from older version
+    #from older version #loss 2
     #L = y_true * K.square(K.maximum(0., 0.9 - y_pred)) + \
     #    0.5 * (1 - y_true) * K.square(K.maximum(0., y_pred - 0.1))
     #return K.mean(K.sum(L, 1))
 
-    #according to paper
+    #according to paper #loss 1
     #return  y_true*K.relu(0.9-y_pred)**2 + 0.5*(1-y_true)*K.relu(y_pred-0.1)**2
 
+    #loss 0
     return y_true*K.relu(0.9-y_pred)**2 + 0.25*(1-y_true)*K.relu(y_pred-0.1)**2
 
 

@@ -106,7 +106,7 @@ if __name__ == "__main__":
     parser.add_argument('-vs', '--validation_split', default=0.2, type=float, help="Fraction of images reserved for validation (strictly between 0 and 1).")    
     parser.add_argument('--image_size', default=0, type=int, help="Size for images which should be used by model (image_size x image_size).")
     ###################### NOT fully implemented yet ###########################
-    parser.add_argument('--grayscale', default=True, help="Changes Network from grayscale mode to RGB mode.")
+    parser.add_argument('--grayscale', help="Changes Network from grayscale mode to RGB mode.")
     parser.add_argument('--rotation_range', default=0, type=int, help="Rotation range for data augmentation.")
     parser.add_argument('--horizontal_flip', default=False, help="Enables horizontal flip for data augmentation.")
     parser.add_argument('--width_shift_range', default=0.0, type=float, help="Widht shift range for data augmentation. Should be within -1.0 to +1.0.")
@@ -139,7 +139,7 @@ if __name__ == "__main__":
     # define model
     input_image = Input(shape=(args.image_size if(args.image_size!=0) else None,
                                args.image_size if(args.image_size!=0) else None,
-                                      1 if(args.grayscale==True) else 3))
+                                      1 if(args.grayscale) else 3))
     cnn = Conv2D(64, (3, 3), activation='relu')(input_image)
     cnn = Conv2D(64, (3, 3), activation='relu')(cnn)
     cnn = AveragePooling2D((2,2))(cnn)
